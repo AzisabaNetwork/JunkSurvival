@@ -1,0 +1,5 @@
+name: JunkSurvival
+version: '${project.version}'
+main: com.github.sirokuri_.junksurvival.JunkSurvival
+api-version: 1.16
+authors: [ 46kuri_ ]
