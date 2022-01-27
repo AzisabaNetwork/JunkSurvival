@@ -2,6 +2,7 @@ package com.github.sirokuri_.junksurvival.listeners;
 
 import com.github.sirokuri_.junksurvival.JunkSurvival;
 import org.bukkit.GameMode;
+import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.block.Block;
@@ -24,6 +25,7 @@ public class JunkSurvivalItemDropListener implements Listener {
     public void onBlockBreak(BlockBreakEvent e) {
         Block block = e.getBlock();
         Material material = block.getType();
+        Location location = block.getLocation();
         if (!block.getWorld().getName().contains("world")) {
             return;
         }
@@ -31,7 +33,7 @@ public class JunkSurvivalItemDropListener implements Listener {
             return;
         }
         if (block.getType() == Material.AIR) return;
-        try{
+        try {
             if (material.isOccluding() || material == Material.GLASS || material == Material.BLUE_STAINED_GLASS || material == Material.BLACK_STAINED_GLASS
                     || material == Material.BROWN_STAINED_GLASS || material == Material.CYAN_STAINED_GLASS || material == Material.GRAY_STAINED_GLASS || material == Material.GREEN_STAINED_GLASS
                     || material == Material.LIGHT_BLUE_STAINED_GLASS || material == Material.LIGHT_GRAY_STAINED_GLASS || material == Material.LIME_STAINED_GLASS
@@ -39,10 +41,10 @@ public class JunkSurvivalItemDropListener implements Listener {
                     || material == Material.PURPLE_STAINED_GLASS || material == Material.RED_STAINED_GLASS || material == Material.WHITE_STAINED_GLASS || material == Material.YELLOW_STAINED_GLASS) {
                 for (int i = rand.nextInt(9) + 2; 0 < i; i--) {
                     ItemStack item = getRandomItem();
-                    Item entityItem = e.getBlock().getWorld().dropItem(e.getBlock().getLocation(), item);
+                    Item entityItem = block.getWorld().dropItem(location, item);
                     entityItem.setTicksLived(4800);
                 }
-                removeExceedItems(e.getBlock().getWorld());
+                removeExceedItems(block.getWorld());
             }
         } catch (IllegalArgumentException illegalArgumentException){
             illegalArgumentException.fillInStackTrace();
