@@ -17,7 +17,6 @@ public final class JunkSurvival extends JavaPlugin {
     @Override
     public void onEnable() {
         taskChainFactory = BukkitTaskChainFactory.create(this);
-        Bukkit.getPluginManager().registerEvents(new JunkSurvivalGiantSpawnListener(), this);
         Bukkit.getPluginManager().registerEvents(new JunkSurvivalItemDropListener(), this);
         Bukkit.getPluginManager().registerEvents(new JunkSurvivalMessageListener(), this);
         Bukkit.getPluginManager().registerEvents(new JunkSurvivalPreventGriefListener(), this);
