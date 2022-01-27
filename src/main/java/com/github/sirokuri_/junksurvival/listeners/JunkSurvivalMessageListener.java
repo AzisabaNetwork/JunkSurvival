@@ -9,8 +9,8 @@ public class JunkSurvivalMessageListener implements Listener {
 
     @EventHandler
     public void onChangeWorld(PlayerChangedWorldEvent e) {
-        if (e.getPlayer().getWorld().getName().contains("world")) {
-            e.getPlayer().sendMessage(ChatColor.DARK_RED + "荒らし対策のため、ロビーサバイバルは一週間間隔でリセットされます");
+        if (e.getPlayer().getWorld().getName().contains("junkSurvival")) {
+            e.getPlayer().sendMessage(ChatColor.DARK_RED + "荒らし対策のため、ジャンクサバイバルは一週間間隔でリセットされます");
         }
     }
 }
