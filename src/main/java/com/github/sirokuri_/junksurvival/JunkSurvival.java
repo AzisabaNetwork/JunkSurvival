@@ -9,10 +9,12 @@ import com.github.sirokuri_.junksurvival.listeners.JunkSurvivalMessageListener;
 import com.github.sirokuri_.junksurvival.listeners.JunkSurvivalPreventGriefListener;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.scheduler.BukkitRunnable;
 
 public final class JunkSurvival extends JavaPlugin {
 
     private static TaskChainFactory taskChainFactory;
+    public BukkitRunnable task = null;
 
     @Override
     public void onEnable() {
@@ -20,6 +22,7 @@ public final class JunkSurvival extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new JunkSurvivalItemDropListener(), this);
         Bukkit.getPluginManager().registerEvents(new JunkSurvivalMessageListener(), this);
         Bukkit.getPluginManager().registerEvents(new JunkSurvivalPreventGriefListener(), this);
+        Bukkit.getPluginManager().registerEvents(new JunkSurvivalGiantSpawnListener(), this);
         Bukkit.getLogger().info(getName() + " enabled.");
     }
 
