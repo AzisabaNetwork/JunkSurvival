@@ -8,9 +8,10 @@ import org.bukkit.event.player.PlayerChangedWorldEvent;
 public class JunkSurvivalMessageListener implements Listener {
 
     @EventHandler
-    public void onChangeWorld(PlayerChangedWorldEvent e) {
-        if (e.getPlayer().getWorld().getName().contains("junkSurvival")) {
-            e.getPlayer().sendMessage(ChatColor.DARK_RED + "荒らし対策のため、ジャンクサバイバルは一週間間隔でリセットされます");
+    public void onChangeWorld(PlayerChangedWorldEvent event) {
+        if (event.getPlayer().getWorld().getName().contains("junkSurvival")) {
+            event.getPlayer().sendMessage(ChatColor.DARK_RED + "荒らし対策のため、ジャンクサバイバルは一日でワールドリセットされます");
+            event.getPlayer().sendMessage(ChatColor.GREEN + "TPS激高の鯖でアイテムを壊すと色々なものがドロップ!?めちゃくちゃな世界を楽しもう");
         }
     }
 }

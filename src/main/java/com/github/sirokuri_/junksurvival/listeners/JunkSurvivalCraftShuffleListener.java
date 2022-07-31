@@ -1,4 +1,4 @@
-package com.github.sirokuri_.junksurvival.listeners;
+/*package com.github.sirokuri_.junksurvival.listeners;
 
 import org.bukkit.Material;
 import org.bukkit.event.EventHandler;
@@ -45,4 +45,4 @@ public class JunkSurvivalCraftShuffleListener implements Listener {
     private boolean isValidItem(Material material) {
         return !invalids.contains(material);
     }
-}
+}*/

@@ -1,5 +1,5 @@
-//package com.github.sirokuri_.junksurvival.listeners;
-/*
+package com.github.sirokuri_.junksurvival.listeners;
+
 import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -61,4 +61,4 @@ public class JunkSurvivalItemDropListener implements Listener {
     private boolean isValidItem(Material material) {
         return !invalids.contains(material);
     }
-}*/
+}
