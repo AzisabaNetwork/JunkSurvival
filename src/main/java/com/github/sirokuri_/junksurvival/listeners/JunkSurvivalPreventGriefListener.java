@@ -19,8 +19,8 @@ public class JunkSurvivalPreventGriefListener implements Listener {
 
     @EventHandler
     public void onBlockPlace(BlockPlaceEvent e) {
-        Material mat = e.getBlockPlaced().getType();
-        if (preventPlaceMaterials.contains(mat)) {
+        Material material = e.getBlockPlaced().getType();
+        if (preventPlaceMaterials.contains(material)) {
             e.setCancelled(true);
             e.getPlayer().playSound(e.getPlayer().getLocation(), Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 1, 1);
         }
@@ -28,12 +28,8 @@ public class JunkSurvivalPreventGriefListener implements Listener {
 
     @EventHandler
     public void onRightClick(PlayerInteractEvent e) {
-        if (e.getAction() != Action.RIGHT_CLICK_BLOCK) {
-            return;
-        }
-        if (e.getItem() == null) {
-            return;
-        }
+        if (e.getAction() != Action.RIGHT_CLICK_BLOCK) return;
+        if (e.getItem() == null) return;
         if (preventRightClickMaterials.contains(e.getItem().getType())) {
             e.setCancelled(true);
             e.getPlayer().playSound(e.getPlayer().getLocation(), Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 1, 1);
