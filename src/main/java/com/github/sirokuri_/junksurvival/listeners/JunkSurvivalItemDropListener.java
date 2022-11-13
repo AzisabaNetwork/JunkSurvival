@@ -1,5 +1,6 @@
 package com.github.sirokuri_.junksurvival.listeners;
 
+import com.github.sirokuri_.junksurvival.JunkSurvival;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -10,12 +11,19 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 
 import org.bukkit.inventory.ItemStack;
+
 import java.util.*;
 
 public class JunkSurvivalItemDropListener implements Listener {
 
     private final List<Material> materialList = Arrays.asList(Material.values().clone());
     private final Random rand = new Random();
+
+    private final JunkSurvival plugin;
+
+    public JunkSurvivalItemDropListener(JunkSurvival junkSurvival) {
+        this.plugin = junkSurvival;
+    }
 
     @EventHandler
     public void onBlockBreak(BlockBreakEvent e) {
@@ -38,6 +46,20 @@ public class JunkSurvivalItemDropListener implements Listener {
                 for (int i = rand.nextInt(9) + 2; 0 < i; i--) {
                     ItemStack item = getRandomItem();
                     Item entityItem = block.getWorld().dropItem(location, item);
+                    Random random = new Random();
+                    int num = random.nextInt(100);
+                    if (1 <= num && num <= 4) {
+                        ItemStack bomb = plugin.yabaiItem();
+                        block.getWorld().dropItem(location,bomb);
+                    }
+                    if (5 <= num && num <= 15) {
+                        ItemStack jumpItem = plugin.JumpItem();
+                        block.getWorld().dropItem(location,jumpItem);
+                    }
+                    if (16 <= num && num <= 18) {
+                        ItemStack killItem = plugin.killItem();
+                        block.getWorld().dropItem(location,killItem);
+                    }
                     entityItem.setTicksLived(4800);
                 }
             }
