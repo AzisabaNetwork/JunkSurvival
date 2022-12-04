@@ -26,6 +26,7 @@ public final class JunkSurvival extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new JunkSurvivalPreventGriefListener(), this);
         Bukkit.getPluginManager().registerEvents(new JunkSurvivalGiantSpawnListener(), this);
         Bukkit.getPluginManager().registerEvents(new JunkAddWorldBorder(this),this);
+        Bukkit.getPluginManager().registerEvents(new JunkSurvivalDisableWorld(),this);
         getCommand("junkSurvivalGive").setExecutor(new JunkCommand(this));
         Bukkit.getLogger().info(getName() + " enabled.");
     }
