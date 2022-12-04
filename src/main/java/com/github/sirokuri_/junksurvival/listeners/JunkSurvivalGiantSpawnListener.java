@@ -34,7 +34,7 @@ public class JunkSurvivalGiantSpawnListener implements Listener {
             return;
         }
         world.spawnEntity(loc, EntityType.GIANT);
-        if (playerDeathCount == 10){
+        if (playerDeathCount == 5){
             for (Player players : Bukkit.getServer().getOnlinePlayers()) {
                 Location location = players.getLocation();
                 World playersWorld = location.getWorld();
