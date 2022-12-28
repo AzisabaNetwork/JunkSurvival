@@ -11,13 +11,6 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public final class JunkSurvival extends JavaPlugin {
 
-    /*
-        ・ワールドリセットを一年単位にする
-        ・砂や砂利を落下しないようにする
-        ・何かを達成した時 (例 指定のアイテム納品やターゲット討伐など)に全プレイヤーが得する効果を付与する(例 HP増加、攻撃力上昇、不死のトーテム付与)
-        ・全プレイヤー合計10回死ぬと全プレイヤーの場所にウィザー沸きを全プレイヤー合計10回死ぬと全プレイヤーの場所にランダムなモブ沸きへ変更
-    */
-
     @Override
     public void onEnable() {
         Bukkit.getPluginManager().registerEvents(new JunkSurvivalItemDropListener(this), this);
