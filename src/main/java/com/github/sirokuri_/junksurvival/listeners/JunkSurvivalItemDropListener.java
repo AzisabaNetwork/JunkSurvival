@@ -51,14 +51,15 @@ public class JunkSurvivalItemDropListener implements Listener {
                     if (1 <= num && num <= 4) {
                         ItemStack bomb = plugin.yabaiItem();
                         block.getWorld().dropItem(location,bomb);
-                    }
-                    if (5 <= num && num <= 15) {
+                    }else if (5 <= num && num <= 15) {
                         ItemStack jumpItem = plugin.JumpItem();
                         block.getWorld().dropItem(location,jumpItem);
-                    }
-                    if (16 <= num && num <= 18) {
+                    }else if (16 <= num && num <= 18) {
                         ItemStack killItem = plugin.killItem();
                         block.getWorld().dropItem(location,killItem);
+                    }else if(19 <= num && num <= 20) {
+                        ItemStack worldBorder = plugin.addWorldBorderItem();
+                        block.getWorld().dropItem(location,worldBorder);
                     }
                     entityItem.setTicksLived(4800);
                 }

@@ -1,6 +1,5 @@
 package com.github.sirokuri_.junksurvival.listeners;
 
-import com.github.sirokuri_.junksurvival.JunkSurvival;
 import org.bukkit.*;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -13,15 +12,12 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 public class JunkAddWorldBorder implements Listener {
 
-    private final JunkSurvival plugin;
-
-    public JunkAddWorldBorder(JunkSurvival junkSurvival) {
-        this.plugin = junkSurvival;
-    }
-
     @EventHandler
     public void onInteract(PlayerInteractEvent event) {
         Player player = event.getPlayer();
+        Location location = player.getLocation();
+        World world = location.getWorld();
+        if (world == null) return;
         ItemStack itemStack = player.getInventory().getItemInMainHand();
         ItemMeta itemMeta = itemStack.getItemMeta();
         if (itemMeta == null) return;
@@ -30,6 +26,8 @@ public class JunkAddWorldBorder implements Listener {
         if (itemMeta.getDisplayName().equals(ChatColor.translateAlternateColorCodes('&',"&aワールドボーダー拡張"))){
             Bukkit.dispatchCommand(player,"worldborder add 10");
             itemStack.setAmount(itemStack.getAmount() - 1);
+            Bukkit.getServer().broadcastMessage(ChatColor.translateAlternateColorCodes('&',"&d" + player.getName() + "&rさんがワールドボーダーを拡張したよ！"));
+            world.playSound(player.getLocation(),Sound.ENTITY_PLAYER_LEVELUP,1,1);
         }
     }
 }
