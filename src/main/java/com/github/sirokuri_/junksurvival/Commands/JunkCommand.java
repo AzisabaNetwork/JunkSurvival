@@ -31,8 +31,7 @@ public class JunkCommand implements CommandExecutor {
                         Player player = (Player) sender;
                         ItemStack borderItem = plugin.addWorldBorderItem();
                         player.getInventory().addItem(borderItem);
-                        Bukkit.getLogger().info("[JunkSurvival] " + player.getName() + " に寄付アイテムを付与しました");
-                        player.sendMessage(ChatColor.translateAlternateColorCodes('&',"&a&l寄付アイテムが付与されました"));
+                        player.sendMessage(ChatColor.translateAlternateColorCodes('&',"&a&l豪華アイテムが付与されました"));
                     }
                 }
 

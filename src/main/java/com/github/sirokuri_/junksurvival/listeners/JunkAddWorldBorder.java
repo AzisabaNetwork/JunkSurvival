@@ -23,11 +23,13 @@ public class JunkAddWorldBorder implements Listener {
         if (itemMeta == null) return;
         if ((event.getHand() != EquipmentSlot.HAND)) return;
         if (!(event.getAction() == Action.LEFT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_BLOCK)) return;
-        if (itemMeta.getDisplayName().equals(ChatColor.translateAlternateColorCodes('&',"&aワールドボーダー拡張"))){
-            Bukkit.dispatchCommand(player,"worldborder add 10");
-            itemStack.setAmount(itemStack.getAmount() - 1);
-            Bukkit.getServer().broadcastMessage(ChatColor.translateAlternateColorCodes('&',"&d" + player.getName() + "&rさんがワールドボーダーを拡張したよ！"));
-            world.playSound(player.getLocation(),Sound.ENTITY_PLAYER_LEVELUP,1,1);
+        if (player.getLocation().getWorld().getName().equalsIgnoreCase("junkSurvival")){
+            if (itemMeta.getDisplayName().equals(ChatColor.translateAlternateColorCodes('&',"&aワールドボーダー拡張"))){
+                Bukkit.dispatchCommand(player,"worldborder add 10");
+                itemStack.setAmount(itemStack.getAmount() - 1);
+                Bukkit.getServer().broadcastMessage(ChatColor.translateAlternateColorCodes('&',"&d" + player.getName() + "&rさんがワールドボーダーを拡張したよ！"));
+                world.playSound(player.getLocation(),Sound.ENTITY_PLAYER_LEVELUP,1,1);
+            }
         }
     }
 }

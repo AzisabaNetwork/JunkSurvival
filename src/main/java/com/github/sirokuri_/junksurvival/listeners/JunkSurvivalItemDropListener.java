@@ -4,6 +4,7 @@ import com.github.sirokuri_.junksurvival.JunkSurvival;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Item;
 import org.bukkit.event.EventHandler;
@@ -45,21 +46,22 @@ public class JunkSurvivalItemDropListener implements Listener {
                     || material == Material.PURPLE_STAINED_GLASS || material == Material.RED_STAINED_GLASS || material == Material.WHITE_STAINED_GLASS || material == Material.YELLOW_STAINED_GLASS) {
                 for (int i = rand.nextInt(9) + 2; 0 < i; i--) {
                     ItemStack item = getRandomItem();
-                    Item entityItem = block.getWorld().dropItem(location, item);
+                    World world = block.getWorld();
+                    Item entityItem = world.dropItem(location, item);
                     Random random = new Random();
                     int num = random.nextInt(100);
                     if (1 <= num && num <= 4) {
                         ItemStack bomb = plugin.yabaiItem();
-                        block.getWorld().dropItem(location,bomb);
+                        world.dropItem(location,bomb);
                     }else if (5 <= num && num <= 15) {
                         ItemStack jumpItem = plugin.JumpItem();
-                        block.getWorld().dropItem(location,jumpItem);
+                        world.dropItem(location,jumpItem);
                     }else if (16 <= num && num <= 18) {
                         ItemStack killItem = plugin.killItem();
-                        block.getWorld().dropItem(location,killItem);
+                        world.dropItem(location,killItem);
                     }else if(19 <= num && num <= 20) {
                         ItemStack worldBorder = plugin.addWorldBorderItem();
-                        block.getWorld().dropItem(location,worldBorder);
+                        world.dropItem(location,worldBorder);
                     }
                     entityItem.setTicksLived(4800);
                 }
