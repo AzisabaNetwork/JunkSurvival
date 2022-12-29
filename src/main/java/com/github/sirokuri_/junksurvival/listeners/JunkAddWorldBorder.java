@@ -23,7 +23,7 @@ public class JunkAddWorldBorder implements Listener {
         if (itemMeta == null) return;
         if ((event.getHand() != EquipmentSlot.HAND)) return;
         if (!(event.getAction() == Action.LEFT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_BLOCK)) return;
-        if (player.getLocation().getWorld().getName().equalsIgnoreCase("junkSurvival")){
+        if (world.getName().equalsIgnoreCase("junkSurvival")){
             if (itemMeta.getDisplayName().equals(ChatColor.translateAlternateColorCodes('&',"&aワールドボーダー拡張"))){
                 Bukkit.dispatchCommand(player,"worldborder add 10");
                 itemStack.setAmount(itemStack.getAmount() - 1);
