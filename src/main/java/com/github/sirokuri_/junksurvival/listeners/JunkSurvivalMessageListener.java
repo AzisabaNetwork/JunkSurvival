@@ -10,12 +10,11 @@ import org.bukkit.potion.PotionEffectType;
 
 public class JunkSurvivalMessageListener implements Listener {
 
-    @SuppressWarnings({"deprecation"})
     @EventHandler
     public void onChangeWorld(PlayerChangedWorldEvent event) {
         Player player = event.getPlayer();
         if (player.getWorld().getName().contains("junkSurvival")) {
-            player.sendMessage(ChatColor.GREEN + "TPS激高の鯖でアイテムを壊すと色々なものがドロップ!?めちゃくちゃな世界を楽しもう");
+            player.sendMessage(ChatColor.translateAlternateColorCodes('&',"TPS激高の鯖で&a&lアイテム&rを壊すと色々なものが&a&lドロップ!?&r中には&a&lワールドの境界線&rを広げる&a&lアイテム&rなども!\nめちゃくちゃな世界を楽しもう!\n&a&lワールド移動&rや&a&l一定時間でつよつよなバフ&rが付与されるよ!"));
             player.addPotionEffect(new PotionEffect(PotionEffectType.HEAL,4000,255),true);
             player.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION,4000,255),true);
             player.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE,4000,255),true);

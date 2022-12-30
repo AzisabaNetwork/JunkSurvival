@@ -5,6 +5,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
+import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
@@ -25,11 +26,29 @@ public class JunkAddWorldBorder implements Listener {
         if (!(event.getAction() == Action.LEFT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_BLOCK)) return;
         if (world.getName().equalsIgnoreCase("junkSurvival")){
             if (itemMeta.getDisplayName().equals(ChatColor.translateAlternateColorCodes('&',"&aワールドボーダー拡張"))){
-                Bukkit.dispatchCommand(player,"worldborder add 10");
+                WorldBorder worldBorder = world.getWorldBorder();
+                double worldBorderSize = worldBorder.getSize();
+                double newWorldBorderSize = worldBorderSize + 10;
+                worldBorder.setSize(newWorldBorderSize);
                 itemStack.setAmount(itemStack.getAmount() - 1);
-                Bukkit.getServer().broadcastMessage(ChatColor.translateAlternateColorCodes('&',"&d" + player.getName() + "&rさんがワールドボーダーを拡張したよ！"));
+                player.sendMessage(ChatColor.translateAlternateColorCodes('&',"&b&l" + player.getName() + "&rさんがワールドボーダーを拡張したよ！\n\n現在のワールドボーダーの大きさ : &b&l" + newWorldBorderSize));
                 world.playSound(player.getLocation(),Sound.ENTITY_PLAYER_LEVELUP,1,1);
             }
+        }
+    }
+
+    @EventHandler
+    public void onDeath(PlayerDeathEvent event){
+        Player player = event.getEntity().getPlayer();
+        if (player == null) return;
+        World world = player.getWorld();
+        if (world.getName().equalsIgnoreCase("junkSurvival")){
+            WorldBorder worldBorder = world.getWorldBorder();
+            double worldBorderSize = worldBorder.getSize();
+            double newWorldBorderSize = worldBorderSize - 1;
+            worldBorder.setSize(newWorldBorderSize);
+            player.sendMessage(ChatColor.translateAlternateColorCodes('&',"&c&lワールドボーダーが縮小！\n\n&r現在のワールドボーダーの大きさ : &c&l" + newWorldBorderSize));
+            world.playSound(player.getLocation(),Sound.BLOCK_ANCIENT_DEBRIS_BREAK,1,1);
         }
     }
 }

@@ -1,9 +1,6 @@
 package com.github.sirokuri_.junksurvival.listeners;
 
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
-import org.bukkit.Material;
-import org.bukkit.Sound;
+import org.bukkit.*;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -59,8 +56,11 @@ public class JunkSurvivalPreventGriefListener implements Listener {
                 List<Player> players = new ArrayList<>(Bukkit.getOnlinePlayers());
                 Collections.shuffle(players);
                 Player targetPlayer = players.get(0);
+                Location location = targetPlayer.getLocation();
+                World world = location.getWorld();
+                if (world == null) return;
                 double damage = 20;
-                if (targetPlayer.getLocation().getWorld().getName().equalsIgnoreCase("junkSurvival")){
+                if (world.getName().equalsIgnoreCase("junkSurvival")){
                     targetPlayer.damage(damage);
                     Bukkit.getServer().broadcastMessage(ChatColor.translateAlternateColorCodes('&',"&c" + targetPlayer.getDisplayName() + "&rが通り魔にやられた"));
                     item.setAmount(item.getAmount() - 1);
