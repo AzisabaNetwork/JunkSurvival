@@ -1,6 +1,7 @@
 package com.github.sirokuri_.junksurvival.listeners;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.entity.EntityType;
@@ -36,12 +37,16 @@ public class JunkSurvivalGiantSpawnListener implements Listener {
             for (Player players : Bukkit.getServer().getOnlinePlayers()) {
                 Location location = players.getLocation();
                 World playersWorld = location.getWorld();
-                if(playersWorld == null) return;
-                playersWorld.spawnEntity(location,getRandomMobs());
+                if (playersWorld == null) return;
+                if (playersWorld.getName().contains("junkSurvival")){
+                    playersWorld.spawnEntity(location,getRandomMobs());
+                }
             }
             playerDeathCount = 0;
+            Bukkit.getServer().broadcastMessage(ChatColor.translateAlternateColorCodes('&',"プレイヤー合計死亡回数により &c" + getRandomMobs() + " &rが召喚!\nプレイヤーの合計死亡回数がリセットされました"));
         }else{
             playerDeathCount++;
+            Bukkit.getServer().broadcastMessage(ChatColor.translateAlternateColorCodes('&',"プレイヤーの合計死亡回数 : &c" + playerDeathCount));
         }
     }
 
