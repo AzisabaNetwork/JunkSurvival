@@ -31,7 +31,7 @@ public class JunkSurvivalPreventGriefListener implements Listener {
     @EventHandler
     public void onRightClick(PlayerInteractEvent event) {
         Player player = event.getPlayer();
-        if (event.getAction() == Action.RIGHT_CLICK_BLOCK) {
+        if (event.getAction() == Action.RIGHT_CLICK_BLOCK || event.getAction() == Action.RIGHT_CLICK_AIR) {
             if (event.getItem() == null) return;
             if (preventRightClickMaterials.contains(event.getItem().getType())) {
                 event.setCancelled(true);

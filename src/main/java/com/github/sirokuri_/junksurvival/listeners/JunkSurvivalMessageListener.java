@@ -1,14 +1,22 @@
 package com.github.sirokuri_.junksurvival.listeners;
 
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.boss.BarColor;
+import org.bukkit.boss.BarStyle;
+import org.bukkit.boss.BossBar;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerChangedWorldEvent;
+import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
 public class JunkSurvivalMessageListener implements Listener {
+
+    BossBar bossBar = Bukkit.createBossBar(ChatColor.RED + "JunkSurvivalへようこそ!", BarColor.PURPLE, BarStyle.SOLID);
 
     @EventHandler
     public void onChangeWorld(PlayerChangedWorldEvent event) {
@@ -20,6 +28,21 @@ public class JunkSurvivalMessageListener implements Listener {
             player.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE,4000,255),true);
             player.addPotionEffect(new PotionEffect(PotionEffectType.CONDUIT_POWER,4000,255),true);
             player.addPotionEffect(new PotionEffect(PotionEffectType.SATURATION,4000,255),true);
+            player.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE,4000,255),true);
+            player.addPotionEffect(new PotionEffect(PotionEffectType.WATER_BREATHING,4000,255),true);
         }
+    }
+
+    @EventHandler
+    public void onJoin(PlayerJoinEvent event){
+        Player player = event.getPlayer();
+        bossBar.addPlayer(player);
+        bossBar.setTitle(ChatColor.RED + "JunkSurvivalへようこそ!");
+    }
+
+    @EventHandler
+    public void onQuit(PlayerQuitEvent event){
+        Player player = event.getPlayer();
+        bossBar.removePlayer(player);
     }
 }

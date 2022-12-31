@@ -31,6 +31,8 @@ public class JunkSurvivalTipEvent implements Listener {
                         player.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE,4000,255),true);
                         player.addPotionEffect(new PotionEffect(PotionEffectType.CONDUIT_POWER,4000,255),true);
                         player.addPotionEffect(new PotionEffect(PotionEffectType.SATURATION,4000,255),true);
+                        player.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE,4000,255),true);
+                        player.addPotionEffect(new PotionEffect(PotionEffectType.WATER_BREATHING,4000,255),true);
                         world.playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP,1,1);
                     }
                 }

@@ -23,7 +23,7 @@ public class JunkAddWorldBorder implements Listener {
         ItemMeta itemMeta = itemStack.getItemMeta();
         if (itemMeta == null) return;
         if ((event.getHand() != EquipmentSlot.HAND)) return;
-        if (!(event.getAction() == Action.LEFT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_BLOCK)) return;
+        if (!(event.getAction() == Action.LEFT_CLICK_AIR || event.getAction() == Action.LEFT_CLICK_BLOCK)) return;
         if (world.getName().equalsIgnoreCase("junkSurvival")){
             if (itemMeta.getDisplayName().equals(ChatColor.translateAlternateColorCodes('&',"&aワールドボーダー拡張"))){
                 WorldBorder worldBorder = world.getWorldBorder();
