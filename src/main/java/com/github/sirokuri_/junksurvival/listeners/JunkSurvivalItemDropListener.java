@@ -1,12 +1,10 @@
 package com.github.sirokuri_.junksurvival.listeners;
 
 import com.github.sirokuri_.junksurvival.JunkSurvival;
-import org.bukkit.GameMode;
-import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.World;
+import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Item;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
@@ -27,14 +25,15 @@ public class JunkSurvivalItemDropListener implements Listener {
     }
 
     @EventHandler
-    public void onBlockBreak(BlockBreakEvent e) {
-        Block block = e.getBlock();
+    public void onBlockBreak(BlockBreakEvent event) {
+        Block block = event.getBlock();
         Material material = block.getType();
         Location location = block.getLocation();
+        Player player = event.getPlayer();;
         if (!block.getWorld().getName().contains("junkSurvival")) {
             return;
         }
-        if (e.getPlayer().getGameMode() != GameMode.SURVIVAL) {
+        if (player.getGameMode() != GameMode.SURVIVAL) {
             return;
         }
         if (block.getType() == Material.AIR) return;
@@ -53,15 +52,23 @@ public class JunkSurvivalItemDropListener implements Listener {
                     if (1 <= num && num <= 4) {
                         ItemStack bomb = plugin.yabaiItem();
                         world.dropItem(location,bomb);
+                        player.sendMessage(ChatColor.translateAlternateColorCodes('&',"&c&lやべーアイテムがドロップしました"));
                     }else if (5 <= num && num <= 15) {
                         ItemStack jumpItem = plugin.JumpItem();
                         world.dropItem(location,jumpItem);
+                        player.sendMessage(ChatColor.translateAlternateColorCodes('&',"&c&lやべーアイテムがドロップしました"));
                     }else if (16 <= num && num <= 18) {
                         ItemStack killItem = plugin.killItem();
                         world.dropItem(location,killItem);
+                        player.sendMessage(ChatColor.translateAlternateColorCodes('&',"&c&lやべーアイテムがドロップしました"));
                     }else if(19 <= num && num <= 20) {
                         ItemStack worldBorder = plugin.addWorldBorderItem();
                         world.dropItem(location,worldBorder);
+                        player.sendMessage(ChatColor.translateAlternateColorCodes('&',"&a&lすげーアイテムがドロップしました"));
+                    }else if(21 <= num && num <= 25) {
+                        ItemStack powerItem = plugin.powerItem();
+                        world.dropItem(location, powerItem);
+                        player.sendMessage(ChatColor.translateAlternateColorCodes('&',"&a&lすげーアイテムがドロップしました"));
                     }
                     entityItem.setTicksLived(4800);
                 }

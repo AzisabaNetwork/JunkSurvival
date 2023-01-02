@@ -1,14 +1,20 @@
 package com.github.sirokuri_.junksurvival.listeners;
 
 import org.bukkit.*;
+import org.bukkit.entity.Entity;
+import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.block.BlockPlaceEvent;
+import org.bukkit.event.entity.EntitySpawnEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -48,7 +54,7 @@ public class JunkSurvivalPreventGriefListener implements Listener {
             }
 
             if (itemMeta.getDisplayName().equalsIgnoreCase(ChatColor.translateAlternateColorCodes('&',"&bびよーん"))){
-                player.setVelocity(player.getEyeLocation().toVector().multiply(10));
+                player.setVelocity(player.getLocation().toVector().multiply(10));
                 item.setAmount(item.getAmount() - 1);
             }
 
@@ -66,6 +72,29 @@ public class JunkSurvivalPreventGriefListener implements Listener {
                     item.setAmount(item.getAmount() - 1);
                 }
             }
+
+            if (itemMeta.getDisplayName().equalsIgnoreCase(ChatColor.translateAlternateColorCodes('&',"&aぱわー!!"))){
+                player.addPotionEffect(new PotionEffect(PotionEffectType.HEAL,4000,255),true);
+                player.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION,4000,255),true);
+                player.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE,4000,255),true);
+                player.addPotionEffect(new PotionEffect(PotionEffectType.CONDUIT_POWER,4000,255),true);
+                player.addPotionEffect(new PotionEffect(PotionEffectType.SATURATION,4000,255),true);
+                player.addPotionEffect(new PotionEffect(PotionEffectType.WATER_BREATHING,4000,255),true);
+                player.addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY,4000,255),true);
+                item.setAmount(item.getAmount() - 1);
+            }
+        }
+    }
+
+    @EventHandler
+    public void onSpawn(EntitySpawnEvent event){
+        Entity entity = event.getEntity();
+        Location location = entity.getLocation();
+        World world = location.getWorld();
+        if (world == null) return;
+        if (entity.getType() == EntityType.SKELETON){
+            event.setCancelled(true);
+            world.spawnEntity(entity.getLocation(),EntityType.WITHER_SKELETON);
         }
     }
 }

@@ -30,6 +30,7 @@ public class JunkSurvivalMessageListener implements Listener {
             player.addPotionEffect(new PotionEffect(PotionEffectType.SATURATION,4000,255),true);
             player.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE,4000,255),true);
             player.addPotionEffect(new PotionEffect(PotionEffectType.WATER_BREATHING,4000,255),true);
+            player.addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY,4000,255),true);
         }
     }
 

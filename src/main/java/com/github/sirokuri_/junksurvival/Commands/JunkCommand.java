@@ -30,7 +30,7 @@ public class JunkCommand implements CommandExecutor {
                         Player player = (Player) sender;
                         ItemStack borderItem = plugin.addWorldBorderItem();
                         player.getInventory().addItem(borderItem);
-                        player.sendMessage(ChatColor.translateAlternateColorCodes('&',"&a&l豪華アイテムが付与されました"));
+                        player.sendMessage(ChatColor.translateAlternateColorCodes('&',"&a&lすげーアイテムが付与されました"));
                     }
                 }
 
@@ -58,6 +58,15 @@ public class JunkCommand implements CommandExecutor {
                         ItemStack killItem = plugin.killItem();
                         player.getInventory().addItem(killItem);
                         player.sendMessage(ChatColor.translateAlternateColorCodes('&',"&c&lやべーアイテムが付与されました"));
+                    }
+                }
+
+                if (args[1].equalsIgnoreCase("5")) {
+                    if (sender.hasPermission("junkSurvivalGive.permission.Admin")) {
+                        Player player = (Player) sender;
+                        ItemStack powerItem = plugin.powerItem();
+                        player.getInventory().addItem(powerItem);
+                        player.sendMessage(ChatColor.translateAlternateColorCodes('&',"&a&lすげーアイテムが付与されました"));
                     }
                 }
             }

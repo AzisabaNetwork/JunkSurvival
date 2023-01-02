@@ -65,4 +65,12 @@ public final class JunkSurvival extends JavaPlugin {
         bomb.setItemMeta(itemMeta);
         return bomb;
     }
+
+    public ItemStack powerItem(){
+        ItemStack powerItem = new ItemStack (Material.GOLD_NUGGET);
+        ItemMeta itemMeta = powerItem.getItemMeta();
+        itemMeta.setDisplayName(ChatColor.translateAlternateColorCodes('&',"&aぱわー!!"));
+        powerItem.setItemMeta(itemMeta);
+        return powerItem;
+    }
 }

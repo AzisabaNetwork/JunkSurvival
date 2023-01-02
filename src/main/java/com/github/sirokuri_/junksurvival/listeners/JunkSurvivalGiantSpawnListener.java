@@ -4,13 +4,17 @@ import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.World;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.entity.EntityDeathEvent;
+import org.bukkit.event.entity.EntityExplodeEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 
 import java.util.Arrays;
+import java.util.EmptyStackException;
 import java.util.List;
 import java.util.Random;
 
@@ -47,6 +51,18 @@ public class JunkSurvivalGiantSpawnListener implements Listener {
         }else{
             playerDeathCount++;
             Bukkit.getServer().broadcastMessage(ChatColor.translateAlternateColorCodes('&',"プレイヤーの合計死亡回数 : &c" + playerDeathCount));
+        }
+    }
+
+    @EventHandler
+    public void onExplode(EntityExplodeEvent event){
+        Entity entity = event.getEntity();
+        Location location = entity.getLocation();
+        World world = location.getWorld();
+        if (world == null) return;
+        if (entity.getType() == EntityType.CREEPER){
+            event.setCancelled(true);
+            world.createExplosion(entity.getLocation(),1,false);
         }
     }
 
