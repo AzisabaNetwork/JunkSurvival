@@ -33,7 +33,7 @@ public class JunkSurvivalGiantSpawnListener implements Listener {
         Location loc = player.getLocation();
         World world = loc.getWorld();
         if (world == null) return;
-        if (!world.getName().contains("junkSurvival")) {
+        if (!world.getName().contains("junkSurvival") || !world.getName().contains("world_nether") || !world.getName().contains("world_the_end")) {
             return;
         }
         world.spawnEntity(loc, EntityType.GIANT);
@@ -42,7 +42,7 @@ public class JunkSurvivalGiantSpawnListener implements Listener {
                 Location location = players.getLocation();
                 World playersWorld = location.getWorld();
                 if (playersWorld == null) return;
-                if (playersWorld.getName().contains("junkSurvival")){
+                if (playersWorld.getName().contains("junkSurvival") || playersWorld.getName().contains("world_nether") || playersWorld.getName().contains("world_the_end")){
                     playersWorld.spawnEntity(location,getRandomMobs());
                 }
             }

@@ -25,7 +25,7 @@ public class JunkSurvivalTipEvent implements Listener {
                     World world = location.getWorld();
                     if (world == null) return;
                     player.sendMessage(ChatColor.translateAlternateColorCodes('&',"&a&ljunkSurvival&rワールドにいる\n&a&l全プレイヤーに一定時間のバフが付与されたよ！"));
-                    if (world.getName().equalsIgnoreCase("junkSurvival")){
+                    if (world.getName().equalsIgnoreCase("junkSurvival") || world.getName().equalsIgnoreCase("world_nether") || world.getName().equalsIgnoreCase("world_the_end")){
                         player.addPotionEffect(new PotionEffect(PotionEffectType.HEAL,4000,255),true);
                         player.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION,4000,255),true);
                         player.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE,4000,255),true);

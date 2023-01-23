@@ -66,7 +66,7 @@ public class JunkSurvivalPreventGriefListener implements Listener {
                 World world = location.getWorld();
                 if (world == null) return;
                 double damage = 20;
-                if (world.getName().equalsIgnoreCase("junkSurvival")){
+                if (world.getName().equalsIgnoreCase("junkSurvival") || world.getName().equalsIgnoreCase("world_nether") || world.getName().equalsIgnoreCase("world_the_end")){
                     targetPlayer.damage(damage);
                     Bukkit.getServer().broadcastMessage(ChatColor.translateAlternateColorCodes('&',"&c" + targetPlayer.getDisplayName() + "&rが通り魔にやられた"));
                     item.setAmount(item.getAmount() - 1);

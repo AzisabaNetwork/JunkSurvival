@@ -24,7 +24,7 @@ public class JunkAddWorldBorder implements Listener {
         if (itemMeta == null) return;
         if ((event.getHand() != EquipmentSlot.HAND)) return;
         if (!(event.getAction() == Action.LEFT_CLICK_AIR || event.getAction() == Action.LEFT_CLICK_BLOCK)) return;
-        if (world.getName().equalsIgnoreCase("junkSurvival")){
+        if (world.getName().equalsIgnoreCase("junkSurvival") || world.getName().equalsIgnoreCase("world_nether") || world.getName().equalsIgnoreCase("world_the_end")){
             if (itemMeta.getDisplayName().equals(ChatColor.translateAlternateColorCodes('&',"&aワールドボーダー拡張"))){
                 WorldBorder worldBorder = world.getWorldBorder();
                 double worldBorderSize = worldBorder.getSize();
@@ -42,7 +42,7 @@ public class JunkAddWorldBorder implements Listener {
         Player player = event.getEntity().getPlayer();
         if (player == null) return;
         World world = player.getWorld();
-        if (world.getName().equalsIgnoreCase("junkSurvival")){
+        if (world.getName().equalsIgnoreCase("junkSurvival") || world.getName().equalsIgnoreCase("world_nether") || world.getName().equalsIgnoreCase("world_the_end")){
             WorldBorder worldBorder = world.getWorldBorder();
             double worldBorderSize = worldBorder.getSize();
             double newWorldBorderSize = worldBorderSize - 1;

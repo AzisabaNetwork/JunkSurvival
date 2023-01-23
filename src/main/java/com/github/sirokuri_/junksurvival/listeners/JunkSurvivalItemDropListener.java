@@ -30,7 +30,7 @@ public class JunkSurvivalItemDropListener implements Listener {
         Material material = block.getType();
         Location location = block.getLocation();
         Player player = event.getPlayer();;
-        if (!block.getWorld().getName().contains("junkSurvival")) {
+        if (!block.getWorld().getName().contains("junkSurvival") || !block.getWorld().getName().contains("world_nether") || !block.getWorld().getName().contains("world_the_end")) {
             return;
         }
         if (player.getGameMode() != GameMode.SURVIVAL) {

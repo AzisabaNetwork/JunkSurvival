@@ -1,4 +1,4 @@
-package com.github.sirokuri_.junksurvival.listeners;
+/*package com.github.sirokuri_.junksurvival.listeners;
 
 import org.bukkit.World;
 import org.bukkit.event.EventHandler;
@@ -17,4 +17,4 @@ public class JunkSurvivalDisableWorld implements Listener {
             event.setCancelled(true);
         }
     }
-}
+}*/
