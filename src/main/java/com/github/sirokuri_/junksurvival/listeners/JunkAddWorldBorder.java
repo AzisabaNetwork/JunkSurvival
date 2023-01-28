@@ -31,7 +31,7 @@ public class JunkAddWorldBorder implements Listener {
                 double newWorldBorderSize = worldBorderSize + 10;
                 worldBorder.setSize(newWorldBorderSize);
                 itemStack.setAmount(itemStack.getAmount() - 1);
-                Bukkit.getServer().broadcastMessage(ChatColor.translateAlternateColorCodes('&',"&b&l" + player.getName() + "&rさんがワールドボーダーを拡張したよ！\n\n現在のワールドボーダーの大きさ : &b&l" + newWorldBorderSize));
+                Bukkit.getServer().broadcastMessage(ChatColor.translateAlternateColorCodes('&',"&b&l" + player.getName() + "&rさんが" + world.getName() + " のワールドボーダーを拡張したよ！\n\n現在のワールドボーダーの大きさ : &b&l" +  + newWorldBorderSize));
                 world.playSound(player.getLocation(),Sound.ENTITY_PLAYER_LEVELUP,1,1);
             }
         }
@@ -47,7 +47,7 @@ public class JunkAddWorldBorder implements Listener {
             double worldBorderSize = worldBorder.getSize();
             double newWorldBorderSize = worldBorderSize - 1;
             worldBorder.setSize(newWorldBorderSize);
-            Bukkit.getServer().broadcastMessage(ChatColor.translateAlternateColorCodes('&',"&c&lワールドボーダーが縮小！\n\n&r現在のワールドボーダーの大きさ : &c&l" + newWorldBorderSize));
+            Bukkit.getServer().broadcastMessage(ChatColor.translateAlternateColorCodes('&',"&c&lワールドボーダーが縮小！\n\n" + world.getName() + "&rの現在のワールドボーダーの大きさ : &c&l" + newWorldBorderSize));
             world.playSound(player.getLocation(),Sound.BLOCK_ANCIENT_DEBRIS_BREAK,1,1);
         }
     }

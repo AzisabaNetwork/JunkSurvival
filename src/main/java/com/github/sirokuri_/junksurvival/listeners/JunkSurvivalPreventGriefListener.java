@@ -1,6 +1,8 @@
 package com.github.sirokuri_.junksurvival.listeners;
 
 import org.bukkit.*;
+import org.bukkit.block.Block;
+import org.bukkit.block.data.BlockData;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
@@ -15,10 +17,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public class JunkSurvivalPreventGriefListener implements Listener {
 
@@ -94,7 +93,9 @@ public class JunkSurvivalPreventGriefListener implements Listener {
         if (world == null) return;
         if (entity.getType() == EntityType.SKELETON){
             event.setCancelled(true);
-            world.spawnEntity(entity.getLocation(),EntityType.WITHER_SKELETON);
+        }
+        if (entity.getType() == EntityType.CREEPER){
+            event.setCancelled(true);
         }
     }
 }

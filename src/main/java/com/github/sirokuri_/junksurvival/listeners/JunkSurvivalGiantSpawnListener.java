@@ -54,7 +54,7 @@ public class JunkSurvivalGiantSpawnListener implements Listener {
         }
     }
 
-    @EventHandler
+    /*@EventHandler
     public void onExplode(EntityExplodeEvent event){
         Entity entity = event.getEntity();
         Location location = entity.getLocation();
@@ -64,7 +64,7 @@ public class JunkSurvivalGiantSpawnListener implements Listener {
             event.setCancelled(true);
             world.createExplosion(entity.getLocation(),1,false);
         }
-    }
+    }*/
 
     private EntityType getRandomMobs() {
         EntityType entityType = null;
