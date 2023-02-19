@@ -8,6 +8,7 @@ import org.bukkit.boss.BossBar;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerChangedWorldEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
@@ -45,5 +46,11 @@ public class JunkSurvivalMessageListener implements Listener {
     public void onQuit(PlayerQuitEvent event){
         Player player = event.getPlayer();
         bossBar.removePlayer(player);
+    }
+
+    @EventHandler
+    public void onChat(AsyncPlayerChatEvent event){
+        String message = event.getMessage();
+        event.setMessage(message + "///");
     }
 }

@@ -1,8 +1,6 @@
 package com.github.sirokuri_.junksurvival.listeners;
 
 import org.bukkit.*;
-import org.bukkit.block.Block;
-import org.bukkit.block.data.BlockData;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;

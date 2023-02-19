@@ -9,6 +9,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 
+import org.bukkit.event.enchantment.EnchantItemEvent;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.*;
@@ -91,5 +92,13 @@ public class JunkSurvivalItemDropListener implements Listener {
 
     private boolean isValidItem(Material material) {
         return !invalids.contains(material);
+    }
+
+    @EventHandler
+    public void onEnchant(EnchantItemEvent event){
+        int cost = event.getExpLevelCost();
+        Player player = event.getEnchanter();
+        event.setExpLevelCost(cost / 2);
+        player.sendMessage(ChatColor.translateAlternateColorCodes('&',"&d元のエンチャントコスト &r: &d" + cost + "\n&d消費エンチャントコスト &r: &d" + event.getExpLevelCost()));
     }
 }
