@@ -9,6 +9,7 @@ import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
 
 public class JunkSurvivalTipEvent implements Listener {
+
     private final JunkSurvival plugin;
 
     public JunkSurvivalTipEvent(JunkSurvival junkSurvivalTipEvent) {

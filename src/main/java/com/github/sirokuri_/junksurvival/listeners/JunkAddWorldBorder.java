@@ -6,6 +6,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.entity.PlayerDeathEvent;
+import org.bukkit.event.player.PlayerChangedWorldEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
@@ -50,5 +51,12 @@ public class JunkAddWorldBorder implements Listener {
             Bukkit.getServer().broadcastMessage(ChatColor.translateAlternateColorCodes('&',"&c&lワールドボーダーが縮小！\n\n" + world.getName() + "&rの現在のワールドボーダーの大きさ : &c&l" + newWorldBorderSize));
             world.playSound(player.getLocation(),Sound.BLOCK_ANCIENT_DEBRIS_BREAK,1,1);
         }
+    }
+
+    @EventHandler
+    public void onChangeWorld(PlayerChangedWorldEvent event){
+        Player player = event.getPlayer();
+        double displayedHealth = player.getHealth() / player.getMaxHealth() * player.getHealthScale();
+        player.setHealth(displayedHealth);
     }
 }

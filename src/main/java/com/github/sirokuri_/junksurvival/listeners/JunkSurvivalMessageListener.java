@@ -1,10 +1,15 @@
 package com.github.sirokuri_.junksurvival.listeners;
 
+import com.github.sirokuri_.junksurvival.JunkSurvival;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.attribute.Attribute;
+import org.bukkit.attribute.AttributeInstance;
+import org.bukkit.attribute.AttributeModifier;
 import org.bukkit.boss.BarColor;
 import org.bukkit.boss.BarStyle;
 import org.bukkit.boss.BossBar;
+import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -16,6 +21,12 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
 public class JunkSurvivalMessageListener implements Listener {
+
+    private final JunkSurvival plugin;
+
+    public JunkSurvivalMessageListener(JunkSurvival junkSurvival){
+        this.plugin = junkSurvival;
+    }
 
     BossBar bossBar = Bukkit.createBossBar(ChatColor.RED + "JunkSurvivalへようこそ!", BarColor.PURPLE, BarStyle.SOLID);
 
@@ -40,12 +51,22 @@ public class JunkSurvivalMessageListener implements Listener {
         Player player = event.getPlayer();
         bossBar.addPlayer(player);
         bossBar.setTitle(ChatColor.RED + "JunkSurvivalへようこそ!");
+        double displayedHealth = player.getHealth() / player.getMaxHealth() * player.getHealthScale();
+        player.setHealth(displayedHealth);
+        plugin.superEasyMode.add(player);
+        plugin.easyMode.remove(player);
+        plugin.normalMode.remove(player);
+        plugin.hardMode.remove(player);
     }
 
     @EventHandler
     public void onQuit(PlayerQuitEvent event){
         Player player = event.getPlayer();
         bossBar.removePlayer(player);
+        plugin.superEasyMode.remove(player);
+        plugin.easyMode.remove(player);
+        plugin.normalMode.remove(player);
+        plugin.hardMode.remove(player);
     }
 
     @EventHandler

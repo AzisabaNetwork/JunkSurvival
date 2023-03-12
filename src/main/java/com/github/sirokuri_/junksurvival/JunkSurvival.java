@@ -5,21 +5,38 @@ import com.github.sirokuri_.junksurvival.listeners.*;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
+import org.bukkit.attribute.Attribute;
+import org.bukkit.attribute.AttributeInstance;
+import org.bukkit.attribute.AttributeModifier;
+import org.bukkit.entity.Entity;
+import org.bukkit.entity.LivingEntity;
+import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
 
+import java.util.ArrayList;
+import java.util.List;
+
+
 public final class JunkSurvival extends JavaPlugin {
 
     public BukkitRunnable task = null;
+
+    public List<Player> superEasyMode = new ArrayList<Player>();
+
+    public List<Player> easyMode = new ArrayList<Player>();
+    public List<Player> normalMode = new ArrayList<Player>();
+    public List<Player> hardMode = new ArrayList<Player>();
+
 
     @Override
     public void onEnable() {
         Bukkit.getPluginManager().registerEvents(new JunkSurvivalItemDropListener(this), this);
         //Bukkit.getPluginManager().registerEvents(new JunkSurvivalCraftShuffleListener(), this);
-        Bukkit.getPluginManager().registerEvents(new JunkSurvivalMessageListener(), this);
-        Bukkit.getPluginManager().registerEvents(new JunkSurvivalPreventGriefListener(), this);
+        Bukkit.getPluginManager().registerEvents(new JunkSurvivalMessageListener(this), this);
+        Bukkit.getPluginManager().registerEvents(new JunkSurvivalPreventGriefListener(this), this);
         Bukkit.getPluginManager().registerEvents(new JunkSurvivalGiantSpawnListener(), this);
         Bukkit.getPluginManager().registerEvents(new JunkAddWorldBorder(),this);
         //Bukkit.getPluginManager().registerEvents(new JunkSurvivalDisableWorld(),this);
