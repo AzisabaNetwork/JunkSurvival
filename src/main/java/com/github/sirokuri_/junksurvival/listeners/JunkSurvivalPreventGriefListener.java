@@ -19,6 +19,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
+import org.bukkit.util.Vector;
 
 import java.util.*;
 
@@ -64,11 +65,15 @@ public class JunkSurvivalPreventGriefListener implements Listener {
                 if (itemMeta.getDisplayName().equalsIgnoreCase(ChatColor.translateAlternateColorCodes('&',"&cどかーん"))){
                     player.getWorld().createExplosion(player.getLocation(), 10);
                     item.setAmount(item.getAmount() - 1);
+                    player.sendMessage(ChatColor.translateAlternateColorCodes('&',"&cどかーんをしようしました"));
                 }
 
                 if (itemMeta.getDisplayName().equalsIgnoreCase(ChatColor.translateAlternateColorCodes('&',"&bびよーん"))){
-                    player.setVelocity(player.getLocation().toVector().multiply(10));
+                    Location loc = player.getEyeLocation();
+                    Vector baseVec = loc.getDirection();
+                    player.setVelocity(baseVec.multiply(5));
                     item.setAmount(item.getAmount() - 1);
+                    player.sendMessage(ChatColor.translateAlternateColorCodes('&',"&bびよーんをしようしました"));
                 }
 
                 if (itemMeta.getDisplayName().equalsIgnoreCase(ChatColor.translateAlternateColorCodes('&',"&cみちづれ"))){
@@ -78,11 +83,12 @@ public class JunkSurvivalPreventGriefListener implements Listener {
                     Location targetPlayerLocation = targetPlayer.getLocation();
                     World targetLocationWorld = targetPlayerLocation.getWorld();
                     if (targetLocationWorld == null) return;
-                    double damage = 20;
+                    double damage = targetPlayer.getHealth();
                     if (targetLocationWorld.getName().equalsIgnoreCase("junkSurvival") || targetLocationWorld.getName().equalsIgnoreCase("world_nether") || targetLocationWorld.getName().equalsIgnoreCase("world_the_end")){
                         targetPlayer.damage(damage);
                         Bukkit.getServer().broadcastMessage(ChatColor.translateAlternateColorCodes('&',"&c" + targetPlayer.getDisplayName() + "&rが通り魔にやられた"));
                         item.setAmount(item.getAmount() - 1);
+                        player.sendMessage(ChatColor.translateAlternateColorCodes('&',"&cみちずれをしようしました"));
                     }
                 }
 
@@ -95,6 +101,7 @@ public class JunkSurvivalPreventGriefListener implements Listener {
                     player.addPotionEffect(new PotionEffect(PotionEffectType.WATER_BREATHING,4000,255),true);
                     player.addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY,4000,255),true);
                     item.setAmount(item.getAmount() - 1);
+                    player.sendMessage(ChatColor.translateAlternateColorCodes('&',"&aぱわーをしようしました"));
                 }
             }
         }
