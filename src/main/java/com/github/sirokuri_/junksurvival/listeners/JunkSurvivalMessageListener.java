@@ -47,7 +47,7 @@ public class JunkSurvivalMessageListener implements Listener {
     }
 
     @EventHandler
-    public void onJoin(PlayerJoinEvent event){
+    public void onJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
         bossBar.addPlayer(player);
         bossBar.setTitle(ChatColor.RED + "JunkSurvivalへようこそ!");

@@ -17,6 +17,8 @@ import java.util.*;
 public class JunkSurvivalItemDropListener implements Listener {
 
     private final List<Material> materialList = Arrays.asList(Material.values().clone());
+
+
     private final Random rand = new Random();
 
     private final JunkSurvival plugin;
