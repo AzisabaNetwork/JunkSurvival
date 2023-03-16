@@ -3,6 +3,7 @@ package com.github.sirokuri_.junksurvival.listeners;
 import com.github.sirokuri_.junksurvival.JunkSurvival;
 import org.bukkit.*;
 import org.bukkit.block.Block;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
@@ -11,7 +12,6 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
-import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntitySpawnEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.EquipmentSlot;
@@ -26,7 +26,9 @@ import java.util.*;
 public class JunkSurvivalPreventGriefListener implements Listener {
 
     private final List<Material> preventPlaceMaterials = Arrays.asList(Material.BEDROCK, Material.BARRIER, Material.COMMAND_BLOCK, Material.CHAIN_COMMAND_BLOCK, Material.REPEATING_COMMAND_BLOCK);
-    private final List<Material> preventRightClickMaterials = Collections.singletonList(Material.COMMAND_BLOCK_MINECART);
+    private final List<Material> preventRightClickMaterials = Arrays.asList(Material.COMMAND_BLOCK_MINECART);
+
+    private final List<Enchantment> enchantmentList = new ArrayList<>(Arrays.asList(Enchantment.values()));
 
     private final JunkSurvival plugin;
 
@@ -204,5 +206,19 @@ public class JunkSurvivalPreventGriefListener implements Listener {
                 }
             }
         }
+
+        if (event.getAction() == Action.RIGHT_CLICK_AIR){
+            if (event.getHand() != EquipmentSlot.HAND) return;
+            Random random = new Random();
+            ItemStack itemStack = player.getInventory().getItemInMainHand();
+            int randomInt = random.nextInt(255) + 1;
+            itemStack.addUnsafeEnchantment(getRandomEnchant(),randomInt);
+        }
+    }
+
+    private Enchantment getRandomEnchant(){
+        Random random = new Random();
+        int rand = random.nextInt(enchantmentList.size());
+        return enchantmentList.get(rand);
     }
 }
