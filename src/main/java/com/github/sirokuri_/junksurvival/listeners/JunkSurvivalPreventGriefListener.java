@@ -216,11 +216,11 @@ public class JunkSurvivalPreventGriefListener implements Listener {
                 event.setCancelled(true);
             } else if (itemMeta.getDisplayName().equalsIgnoreCase(ChatColor.translateAlternateColorCodes('&',"&bびよーん"))) {
                 event.setCancelled(true);
-            }else if (itemMeta.getDisplayName().equalsIgnoreCase(ChatColor.translateAlternateColorCodes('&',"&aぱわー!!"))){
+            } else if (itemMeta.getDisplayName().equalsIgnoreCase(ChatColor.translateAlternateColorCodes('&',"&aぱわー!!"))){
                 event.setCancelled(true);
-            }else if (itemMeta.getDisplayName().equals(ChatColor.translateAlternateColorCodes('&',"&aワールドボーダー拡張"))){
+            } else if (itemMeta.getDisplayName().equals(ChatColor.translateAlternateColorCodes('&',"&aワールドボーダー拡張"))){
                 event.setCancelled(true);
-            }else {
+            } else {
                 Random random = new Random();
                 int randomInt = random.nextInt(255) + 1;
                 itemStack.addUnsafeEnchantment(getRandomEnchant(),randomInt);
