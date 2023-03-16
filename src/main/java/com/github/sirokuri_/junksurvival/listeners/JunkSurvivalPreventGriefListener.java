@@ -162,7 +162,7 @@ public class JunkSurvivalPreventGriefListener implements Listener {
                 if (block.getType() == Material.EMERALD_BLOCK){
                     if (plugin.superEasyMode.contains(player)){
                         player.sendMessage(ChatColor.translateAlternateColorCodes('&',"&dすでにそのもーどだよ"));
-                    }else{
+                    } else {
                         plugin.easyMode.remove(player);
                         plugin.normalMode.remove(player);
                         plugin.hardMode.remove(player);
@@ -174,7 +174,7 @@ public class JunkSurvivalPreventGriefListener implements Listener {
                 if (block.getType() == Material.DIAMOND_BLOCK){
                     if (plugin.easyMode.contains(player)){
                         player.sendMessage(ChatColor.translateAlternateColorCodes('&',"&dすでにそのもーどだよ"));
-                    }else{
+                    } else {
                         plugin.superEasyMode.remove(player);
                         plugin.normalMode.remove(player);
                         plugin.hardMode.remove(player);
@@ -185,7 +185,7 @@ public class JunkSurvivalPreventGriefListener implements Listener {
                 if (block.getType() == Material.IRON_BLOCK){
                     if (plugin.normalMode.contains(player)){
                         player.sendMessage(ChatColor.translateAlternateColorCodes('&',"&dすでにそのもーどだよ"));
-                    }else{
+                    } else {
                         plugin.superEasyMode.remove(player);
                         plugin.easyMode.remove(player);
                         plugin.hardMode.remove(player);
@@ -196,7 +196,7 @@ public class JunkSurvivalPreventGriefListener implements Listener {
                 if (block.getType() == Material.REDSTONE_BLOCK){
                     if (plugin.hardMode.contains(player)){
                         player.sendMessage(ChatColor.translateAlternateColorCodes('&',"&dすでにそのもーどだよ"));
-                    }else{
+                    } else {
                         plugin.superEasyMode.remove(player);
                         plugin.easyMode.remove(player);
                         plugin.normalMode.remove(player);
