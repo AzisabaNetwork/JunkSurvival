@@ -209,10 +209,22 @@ public class JunkSurvivalPreventGriefListener implements Listener {
 
         if (event.getAction() == Action.RIGHT_CLICK_AIR){
             if (event.getHand() != EquipmentSlot.HAND) return;
-            Random random = new Random();
             ItemStack itemStack = player.getInventory().getItemInMainHand();
-            int randomInt = random.nextInt(255) + 1;
-            itemStack.addUnsafeEnchantment(getRandomEnchant(),randomInt);
+            ItemMeta itemMeta = itemStack.getItemMeta();
+            if (itemMeta == null) return;
+            if (itemMeta.getDisplayName().equalsIgnoreCase(ChatColor.translateAlternateColorCodes('&',"&cどかーん"))){
+                event.setCancelled(true);
+            } else if (itemMeta.getDisplayName().equalsIgnoreCase(ChatColor.translateAlternateColorCodes('&',"&bびよーん"))) {
+                event.setCancelled(true);
+            }else if (itemMeta.getDisplayName().equalsIgnoreCase(ChatColor.translateAlternateColorCodes('&',"&aぱわー!!"))){
+                event.setCancelled(true);
+            }else if (itemMeta.getDisplayName().equals(ChatColor.translateAlternateColorCodes('&',"&aワールドボーダー拡張"))){
+                event.setCancelled(true);
+            }else {
+                Random random = new Random();
+                int randomInt = random.nextInt(255) + 1;
+                itemStack.addUnsafeEnchantment(getRandomEnchant(),randomInt);
+            }
         }
     }
 
